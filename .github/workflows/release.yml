@@ -1,8 +1,8 @@
 name: "📦 Release Workflow"
 
 on:
-  release:
-    types: [created]
+  push:
+    branches: [release]
 
 jobs:
   publish-tauri:

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { ThemeContext } from "./contexts/themeContext";
 
 function App() {
