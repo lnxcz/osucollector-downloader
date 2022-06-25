@@ -1,31 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
+import { ThemeContext } from "./contexts/themeContext";
 
 function App() {
-  const [theme, setTheme] = useState("dark");
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-
-  useEffect(() => {
-    const theme = localStorage.getItem("theme");
-    switch (theme) {
-      case "dark":
-        setTheme("dark");
-        localStorage.setItem("theme", "dark");
-        break;
-      case "light":
-        setTheme("light");
-        localStorage.setItem("theme", "light");
-        break;
-      default:
-        localStorage.setItem("theme", "dark");
-    }
-  }, []);
-
+  const { theme, setTheme } = useContext(ThemeContext);
+  function isDark() {
+    return theme === "dark";
+  }
   return (
     <div className="bg-white dark:bg-slate-600 px-[10rem]">
-      <button onClick={toggleTheme}>theme</button>
+      <label className="text-primary">
+        <input
+          type="checkbox"
+          checked={isDark()}
+          onChange={(e) => setTheme(e.target.checked ? "dark" : "light")}
+        ></input>
+        Dark Mode
+      </label>
       <h1 className="text-center font-bold text-4xl mt-5">
         Osu Collector Downloader
       </h1>
